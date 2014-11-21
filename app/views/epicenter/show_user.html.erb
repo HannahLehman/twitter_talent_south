@@ -1,0 +1,31 @@
+<h1><%= @user.username %></h1>
+<h3><%= @user.location %></h3>
+<h3>Bio:</h3>
+<p><%= @user.bio %></p>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Message</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if @user.id != current_user.id && current_user.following.include?(@user.id.to_s) %>
+  <%= form_tag('/now_following') do %>
+  	<span class="invisible">
+  		<%= text_field_tag :follow_id, @user.id %>
+  	</span><br />
+  	<%= submit_tag "Follow", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

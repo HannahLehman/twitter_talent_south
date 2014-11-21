@@ -1,0 +1,22 @@
+<h1>Your Twitter Tech South Feed</h1>
+<p>Hello, <%= current_user.name %>!</p>
+<div>
+	<p>Tell us what's going on:</p>
+	<%= form_tag('/user_profile') do %>
+		<%= text_field_tag :message %>
+		<span class="invisible"><%= number_field_tag :user_id, current_user.id %></span><br />
+		<%= submit_tag "Tweet It!", class: "btn btn-primary" %>
+	<% end %>
+</div>
+
+
+<h3>Here are your friends' tweets:</h3>
+
+<div>
+	<% @tweets_for_feed.each do |f| %>
+		<div>
+			<p><%= f.message %></p>
+			<p><strong><em><%= link_to f.user.username, user_profile_path(user_id: f.user_id) %></em></strong></p>
+		</div>
+	<% end %>
+</div>
