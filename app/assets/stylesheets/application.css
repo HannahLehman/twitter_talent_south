@@ -17,3 +17,21 @@
 .invisible {
 	visibility: hidden;
 }
+
+.container {
+	background: rgba(255,255,255,0.8);
+	padding: 10px;
+}
+
+.mbot-10 {
+	margin-bottom: 10px;
+}
+
+.sm-user-avatar {
+	height: 50px;
+	width: 50px;
+}
+
+.placehold-text {
+	color: #BDBDBD;
+}

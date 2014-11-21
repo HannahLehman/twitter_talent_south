@@ -3,11 +3,13 @@
 <h3>Bio:</h3>
 <p><%= @user.bio %></p>
 
+<div>
+  <%= image_tag @user.avatar.url(:medium) %><br />
 
 <table class="table">
   <thead>
     <tr>
-      <th>Message</th>
+      <th>Messages</th>
     </tr>
   </thead>
 
