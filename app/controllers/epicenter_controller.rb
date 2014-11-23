@@ -49,4 +49,8 @@ class EpicenterController < ApplicationController
   	# Then we save it in our database.
 
   end
+
+  def show_all_users
+    @users = User.all
+  end
 end

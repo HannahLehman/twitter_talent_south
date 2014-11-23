@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'epicenter#feed'
 
+  get 'show_all_users' => 'epicenter#show_all_users'
+
   get 'user_profile' => 'epicenter#show_user'
   post 'user_profile' => 'epicenter#show_user'
 

@@ -14,12 +14,15 @@
  *= require_self
  */
 
+body {
+	background-color: #1C1C1C;
+}
+
 .invisible {
 	visibility: hidden;
 }
 
 .container {
-	background: rgba(255,255,255,0.8);
 	padding: 10px;
 }
 
@@ -27,11 +30,38 @@
 	margin-bottom: 10px;
 }
 
+.ptop-5 {
+	padding-top: 5px;
+}
+
+.ptop-10 {
+	padding-top: 10px;
+}
+
+.no-marg {
+	margin: 0px;
+}
+
+.no-border {
+	border: 0px;
+}
+
 .sm-user-avatar {
 	height: 50px;
 	width: 50px;
 }
 
+.super-sm-avatar {
+	height: 30px;
+	width: 30px;
+}
+
 .placehold-text {
 	color: #BDBDBD;
+}
+
+.feed-tweeting {
+	background-color: #c0deed;
+	border-bottom: 1px solid #1dcaff;
+	border-radius: 5px 5px 0px 0px;
 }

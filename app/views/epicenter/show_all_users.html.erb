@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to "@#{user.username}", user_profile_path(user_id: user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
