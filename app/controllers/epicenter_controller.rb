@@ -24,15 +24,30 @@ class EpicenterController < ApplicationController
   		end
   	end
 
+    @tweet = Tweet.new
+    @tweet.message = params[:message]
+    @tweet.user_id = params[:user_id]
+    @tweet.save
+
+    @users = User.all
+    @followers = []
+
+    @users.each do |user|
+      if user.following.include? current_user.id
+        @followers.push(user)
+      end
+    end
+
   end
 
   def show_user
   	@user = User.find(params[:user_id])
+    @tweets = @user.tweets.order(created_at: :desc)
 
-    tweet = Tweet.new
-    tweet.message = params[:message]
-    tweet.user_id = params[:user_id]
-    tweet.save
+    @tweet = Tweet.new
+    @tweet.message = params[:message]
+    @tweet.user_id = params[:user_id]
+    @tweet.save
   end
 
   def now_following
@@ -53,4 +68,16 @@ class EpicenterController < ApplicationController
   def show_all_users
     @users = User.all
   end
+
+  def show_followers
+    @users = User.all
+    @followers = []
+
+    @users.each do |user|
+      if user.following.include? current_user.id
+        @followers.push(user)
+      end
+    end
+  end
+  
 end

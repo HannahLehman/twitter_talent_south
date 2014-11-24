@@ -18,6 +18,26 @@ body {
 	background-color: #1C1C1C;
 }
 
+th {
+	color: #BDBDBD;
+	font-weight: normal;
+	width: 75px;
+}
+
+td {
+	color: #1dcaff;
+	font-weight: bold;
+}
+
+a:visited {
+	color: #1dcaff;
+}
+
+a:hover {
+	color: red;
+	text-decoration: none;
+}
+
 .invisible {
 	visibility: hidden;
 }
@@ -28,6 +48,14 @@ body {
 
 .mbot-10 {
 	margin-bottom: 10px;
+}
+
+.mtop-15 {
+	margin-top: 15px;
+}
+
+.mleft-10 {
+	margin-left: 10px;
 }
 
 .ptop-5 {
@@ -64,4 +92,8 @@ body {
 	background-color: #c0deed;
 	border-bottom: 1px solid #1dcaff;
 	border-radius: 5px 5px 0px 0px;
+}
+
+.time-ago {
+	color: #BDBDBD;
 }

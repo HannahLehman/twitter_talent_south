@@ -1,41 +1,79 @@
-
-
-
-
-
-
 <div class="container">
-<div class="row">
-	<div class="panel panel-default no-marg no-border">
-		<div class="panel-body feed-tweeting">
-			<div class="col-md-1">
-				<%= image_tag current_user.avatar.url(:thumb), class: "sm-user-avatar" %>
+	<div class="row">
+
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row mbot-10">
+						<div class="col-md-5">
+							<%= image_tag current_user.avatar.url(:thumb) %>
+						</div>
+						<div class="col-md-7 mtop-15">
+							<strong><%= current_user.name %></strong><br />
+							<span class="time-ago">@<%= current_user.username %>
+						</div>
+					</div>
+				<div>
+					<table>
+						<tr>
+							<th>Tweets</th>
+							<th>Following</th>
+							<th>Followers</th>
+						</tr>
+						<tr>
+							<td><%= current_user.tweets.count %></td>
+							<td><%= current_user.following.length %></td>
+							<td><%= link_to @followers.count, followers_path %></td>
+						</tr>
+					</table>
+				</div>
+				</div>
 			</div>
-			<div class="col-md-10 ptop-5">
-				<%= form_tag('/user_profile') do %>
-					<%= text_field_tag :message, nil, placeholder: "So what's that you say?", class: "placehold-text form-control", autofocus: true %>
-					<span class="invisible"><%= number_field_tag :user_id, current_user.id %>
-					<%= submit_tag "Tweet It!", class: "btn btn-primary" %></span>
-				<% end %>
+		</div>
+
+		<div class="col-md-8">
+
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="panel panel-default no-marg no-border">
+						<div class="panel-body feed-tweeting">
+							<div class="col-md-1">
+								<%= image_tag current_user.avatar.url(:thumb), class: "sm-user-avatar" %>
+							</div>
+							<div class="col-md-10 ptop-5 mleft-10">
+								<%= form_tag('/epicenter/feed') do %>
+									<%= text_field_tag :message, nil, placeholder: "So what's that you say?", class: "placehold-text form-control", autofocus: true %>
+									<span class="invisible"><%= number_field_tag :user_id, current_user.id %>
+									<%= submit_tag "Tweet It!", class: "btn btn-primary" %></span>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% @tweets_for_feed.each do |f| %>
+				<div class="row mbot-11">
+					<div class="panel panel-default no-marg no-border">
+						<div class="panel-body">
+							<div class="col-md-1">
+								<%= image_tag f.user.avatar.url(:thumb), class: "sm-user-avatar" %>
+							</div>
+							<div class="col-md-10 mleft-10">
+								
+									<%= link_to user_profile_path(user_id: f.user_id) do %>
+										<p><strong><%= f.user.name %></strong> <span class="time-ago">@<%= f.user.username %> &bull; <%= time_ago_in_words(f.created_at) %></span></p>
+									<% end %>
+								<p><%= f.message %></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
 			</div>
 		</div>
 	</div>
 </div>
-	<% @tweets_for_feed.each do |f| %>
-		<div class="row mbot-11">
-			<div class="panel panel-default no-marg no-border">
-				<div class="panel-body">
-					<div class="col-md-1">
-						<%= image_tag f.user.avatar.url(:thumb), class: "sm-user-avatar" %>
-					</div>
-					<div class="col-md-10">
-						<p><strong><em><%= link_to "@#{f.user.username}", user_profile_path(user_id: f.user_id) %></em></strong></p>
-						<p><%= f.message %></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	<% end %>
+
 
 <script>
 $('[placeholder]').parents('form').submit(function() {
